@@ -7,10 +7,22 @@ defmodule ExJournoNoSchemaWeb.PostLive.New do
   def render(assigns) do
     ~H"""
     {live_render(@socket, NavigationLive, session: %{}, id: "navigation", sticky: true)}
-    <.live_component module={Components.Title} id="post_title" title={@title} />
-    <.live_component module={Components.Slug} id="post_slug" title={@title} />
-    <.live_component module={Components.Body} id="post_body" />
-    <.live_component module={Components.Footer} id="post_footer" />
+    <div class="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-3 gap-5">
+      <div class="col-span-2 rounded-xl dark:border-gray-600 h-396">
+        <.live_component module={Components.Title} id="post_title" title={@title} />
+        <.live_component module={Components.Body} id="post_body" />
+      </div>
+      <div class="col-span-1">
+        <div class="grid grid-cols-1 gap-5">
+          <div class="border-2 border-dashed border-gray-300 rounded-xl dark:border-gray-600 h-24 p-4">
+            <.live_component module={Components.Footer} id="post_footer" />
+          </div>
+          <div class="border-2 border-dashed border-gray-300 rounded-xl dark:border-gray-600 h-24 p-4">
+            <.live_component module={Components.Slug} id="post_slug" title={@title} />
+          </div>
+        </div>
+      </div>
+    </div>
     """
   end
 
